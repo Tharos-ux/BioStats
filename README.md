@@ -15,3 +15,8 @@ Les fonctionnalités d'enregistrement automatique au format CSV ne sont pas enco
 ![alt](https://media.discordapp.net/attachments/888034160265007174/889246734990069760/unknown.png)
 
 Il semble peu possible de pouvoir obtenir automatiquement l'état mémoire sous Linux, vu qu'il faut les permissions sudo pour obtenir de telles données.
+
+Docs utiles !
+https://javadoc.io/doc/com.outr.javasysmon/javasysmon_2.10/latest/index.html
+https://openhardwaremonitor.org/downloads/
+https://javadoc.io/doc/com.github.oshi/oshi-core/latest/index.html
