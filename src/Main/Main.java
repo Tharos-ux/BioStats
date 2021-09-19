@@ -123,8 +123,8 @@ public class Main {
 		tableArgs.add(Long.toString(gMem));
 		System.out.println("Vitesse mémoire : "+ gSpeed + " MHz");
 		tableArgs.add(Long.toString(gSpeed));
-		System.out.println("Type mémoire : "+ phyM.get(0).getMemoryType());
-		tableArgs.add(phyM.get(0).getMemoryType());
+		System.out.println("Type mémoire : "+ ((phyM.isEmpty())?"NULL":phyM.get(0).getMemoryType()));
+		tableArgs.add(((phyM.isEmpty())?"NULL":phyM.get(0).getMemoryType()));
 		System.out.println("Système d'exploitation : " + System.getProperty("os.name"));
 		tableArgs.add(System.getProperty("os.name"));
 	}
