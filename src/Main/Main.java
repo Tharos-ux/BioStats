@@ -6,6 +6,7 @@ import oshi.hardware.GlobalMemory;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.hardware.PhysicalMemory;
 import oshi.hardware.Sensors;
+import oshi.hardware.VirtualMemory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -92,12 +93,14 @@ public class Main {
 		CentralProcessor processor = hardware.getProcessor();
 		GlobalMemory memory = hardware.getMemory();
 		List<PhysicalMemory> phyM = memory.getPhysicalMemory();
+		VirtualMemory virM = memory.getVirtualMemory();
 		long gMem = 0;
-		long gSpeed = phyM.isEmpty()?0:(phyM.get(0).getClockSpeed())/1000000;
+		long gSpeed = phyM.isEmpty()?null:(phyM.get(0).getClockSpeed())/1000000;
 		for(PhysicalMemory m : phyM) {
 			gMem = gMem+(m.getCapacity()/1048576);
 			gSpeed = gSpeed<=m.getClockSpeed()/1000000?gSpeed:m.getClockSpeed()/1000000;
 		}
+		if(gMem==0) gMem = virM.getVirtualMax();
 		CentralProcessor.ProcessorIdentifier processorIdentifier = processor.getProcessorIdentifier();
 		JavaSysMon monitor = new JavaSysMon();
 		String cpuSpeed = Long.toString((monitor.cpuFrequencyInHz())/1000000);
@@ -123,8 +126,8 @@ public class Main {
 		tableArgs.add(Long.toString(gMem));
 		System.out.println("Vitesse mémoire : "+ gSpeed + " MHz");
 		tableArgs.add(Long.toString(gSpeed));
-		System.out.println("Type mémoire : "+ ((phyM.isEmpty())?"NULL":phyM.get(0).getMemoryType()));
-		tableArgs.add(((phyM.isEmpty())?"NULL":phyM.get(0).getMemoryType()));
+		System.out.println("Type mémoire : "+ ((phyM.isEmpty())?"VIRTUAL":phyM.get(0).getMemoryType()));
+		tableArgs.add(((phyM.isEmpty())?"VIRTUAL":phyM.get(0).getMemoryType()));
 		System.out.println("Système d'exploitation : " + System.getProperty("os.name"));
 		tableArgs.add(System.getProperty("os.name"));
 	}
