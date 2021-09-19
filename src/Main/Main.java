@@ -95,7 +95,7 @@ public class Main {
 		List<PhysicalMemory> phyM = memory.getPhysicalMemory();
 		VirtualMemory virM = memory.getVirtualMemory();
 		long gMem = 0;
-		long gSpeed = phyM.isEmpty()?null:(phyM.get(0).getClockSpeed())/1000000;
+		long gSpeed = phyM.isEmpty()?0:(phyM.get(0).getClockSpeed())/1000000;
 		for(PhysicalMemory m : phyM) {
 			gMem = gMem+(m.getCapacity()/1048576);
 			gSpeed = gSpeed<=m.getClockSpeed()/1000000?gSpeed:m.getClockSpeed()/1000000;
