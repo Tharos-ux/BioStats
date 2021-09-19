@@ -11,3 +11,7 @@ La classe main contient l'intégralité des méthodes récupérant les paramètr
 ![alt text](https://media.discordapp.net/attachments/888034160265007174/889235961966387260/unknown.png)
 
 Les fonctionnalités d'enregistrement automatique au format CSV ne sont pas encore gérées.
+
+![alt](https://media.discordapp.net/attachments/888034160265007174/889246734990069760/unknown.png)
+
+Il semble peu possible de pouvoir obtenir automatiquement l'état mémoire sous Linux, vu qu'il faut les permissions sudo pour obtenir de telles données.
