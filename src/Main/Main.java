@@ -37,8 +37,8 @@ public class Main {
 		pathList.add("ressources/Escherichia_coli_fraction0001000_READS_MIXED.fasta");
 		pathList.add("ressources/Escherichia_coli_fraction0005000_READS_MIXED.fasta");
 		pathList.add("ressources/Escherichia_coli_fraction0010000_READS_MIXED.fasta");
-		//pathList.add("ressources/Escherichia_coli_fraction0050000_READS_MIXED.fasta");
-		//pathList.add("ressources/Escherichia_coli_fraction0100000_READS_MIXED.fasta");
+		pathList.add("ressources/Escherichia_coli_fraction0050000_READS_MIXED.fasta");
+		pathList.add("ressources/Escherichia_coli_fraction0100000_READS_MIXED.fasta");
 		
 		System.out.println("-------------- EXEC ---------------");
 		

@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="librairies"/>
 	<classpathentry kind="src" path="ressources"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-13">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-13">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="X:/BioInf/oshi-core-5.8.2.jar"/>
-	<classpathentry kind="lib" path="X:/BioInf/javasysmon-0.3.5.1.jar"/>
-	<classpathentry kind="lib" path="X:/BioInf/jna-5.9.0.jar"/>
-	<classpathentry kind="lib" path="X:/BioInf/jna-jpms-5.9.0.jar"/>
-	<classpathentry kind="lib" path="X:/BioInf/slf4j-api-1.7.32.jar"/>
-	<classpathentry kind="lib" path="X:/BioInf/slf4j-simple-1.7.32.jar"/>
-	<classpathentry kind="lib" path="X:/BioInf/jna-platform-5.9.0.jar"/>
-	<classpathentry kind="lib" path="X:/BioInf/jna-platform-jpms-5.9.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Siegfried/eclipse-workspace/BioStats/librairies/oshi-core-5.8.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Siegfried/eclipse-workspace/BioStats/librairies/javasysmon-0.3.5.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Siegfried/eclipse-workspace/BioStats/librairies/jna-5.9.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Siegfried/eclipse-workspace/BioStats/librairies/jna-jpms-5.9.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Siegfried/eclipse-workspace/BioStats/librairies/jna-platform-5.9.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Siegfried/eclipse-workspace/BioStats/librairies/jna-platform-jpms-5.9.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Siegfried/eclipse-workspace/BioStats/librairies/slf4j-api-1.7.32.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Siegfried/eclipse-workspace/BioStats/librairies/slf4j-simple-1.7.32.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
