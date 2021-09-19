@@ -37,8 +37,8 @@ public class Main {
 		pathList.add("ressources/Escherichia_coli_fraction0001000_READS_MIXED.fasta");
 		pathList.add("ressources/Escherichia_coli_fraction0005000_READS_MIXED.fasta");
 		pathList.add("ressources/Escherichia_coli_fraction0010000_READS_MIXED.fasta");
-		pathList.add("ressources/Escherichia_coli_fraction0050000_READS_MIXED.fasta");
-		pathList.add("ressources/Escherichia_coli_fraction0100000_READS_MIXED.fasta");
+		//pathList.add("ressources/Escherichia_coli_fraction0050000_READS_MIXED.fasta");
+		//pathList.add("ressources/Escherichia_coli_fraction0100000_READS_MIXED.fasta");
 		
 		System.out.println("-------------- EXEC ---------------");
 		
@@ -93,7 +93,7 @@ public class Main {
 		GlobalMemory memory = hardware.getMemory();
 		List<PhysicalMemory> phyM = memory.getPhysicalMemory();
 		long gMem = 0;
-		long gSpeed = (phyM.get(0).getClockSpeed())/1000000;
+		long gSpeed = phyM.isEmpty()?0:(phyM.get(0).getClockSpeed())/1000000;
 		for(PhysicalMemory m : phyM) {
 			gMem = gMem+(m.getCapacity()/1048576);
 			gSpeed = gSpeed<=m.getClockSpeed()/1000000?gSpeed:m.getClockSpeed()/1000000;
