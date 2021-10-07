@@ -8,9 +8,13 @@ import oshi.hardware.PhysicalMemory;
 import oshi.hardware.Sensors;
 import oshi.hardware.VirtualMemory;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import com.jezhumble.javasysmon.JavaSysMon;
 
@@ -20,13 +24,26 @@ public class Main {
 	 * length of key used for alignment
 	 */
 	public static int keySize = 22;
-	public static int execs = 5;
+	public static int execs = 1;
 	public static ArrayList<String> tableArgs = new ArrayList<String>();
 	public static Scanner sc = new Scanner(System.in);
 	public static SystemInfo systemInfo = new SystemInfo();
 	public static HardwareAbstractionLayer hardware = systemInfo.getHardware();
 	public static ArrayList<String> pathList = new ArrayList<String>();
+	public static String sysname = getComputerName();
+	public static Sensors sensor = hardware.getSensors();
+	public static final String intitules = "000100 pb,000500 pb,001000 pb,005000 pb,010000 pb,050000 pb,100000 pb,Temperature maximale,Delta temperature,Nom processeur,Cadence horloge,Architecture processeur,Fabricant processeur,Microarchitecture,Processeurs physiques,Processeurs logiques,Processeurs JVM,Mémoire JVM,Mémoire totale,Vitesse mémoire,Type mémoire,OS";
 	
+	private static String getComputerName(){
+	    Map<String, String> env = System.getenv();
+	    if (env.containsKey("COMPUTERNAME"))
+	        return env.get("COMPUTERNAME");
+	    else if (env.containsKey("HOSTNAME"))
+	        return env.get("HOSTNAME");
+	    else
+	        return "Unknown Computer";
+	}	
+			
 	/**
 	 * main process, auto start
 	 * @param args system params
@@ -38,18 +55,20 @@ public class Main {
 		pathList.add("ressources/Escherichia_coli_fraction0001000_READS_MIXED.fasta");
 		pathList.add("ressources/Escherichia_coli_fraction0005000_READS_MIXED.fasta");
 		pathList.add("ressources/Escherichia_coli_fraction0010000_READS_MIXED.fasta");
-		//pathList.add("ressources/Escherichia_coli_fraction0050000_READS_MIXED.fasta");
-		//pathList.add("ressources/Escherichia_coli_fraction0100000_READS_MIXED.fasta");
+		pathList.add("ressources/Escherichia_coli_fraction0050000_READS_MIXED.fasta");
+		pathList.add("ressources/Escherichia_coli_fraction0100000_READS_MIXED.fasta");
 		
 		System.out.println("-------------- EXEC ---------------");
 		
 		System.out.println("Temps d'exécution moyen sur "+execs+" exécutions avec clés de "+keySize+" pb. :");
 		System.out.println();
+		double startTemp = sensor.getCpuTemperature();
 		double tempp = executionCode(execs);
 		tempp = Math.round(tempp*100.0)/100.0;
 		System.out.println();
 		System.out.println("Température maximale atteinte : "+tempp+"°C");
 		tableArgs.add(Double.toString(tempp));
+		tableArgs.add(Double.toString(tempp-startTemp));
 		
 		System.out.println("------------- SYSINFO -------------");
 		getSysInfo();
@@ -67,7 +86,6 @@ public class Main {
 	 * @return maximum CPU temperature in degrees
 	 */
 	public static double executionCode(int executions) {
-		Sensors sensor = hardware.getSensors();
 		double averageTemp = 0;
 		ArrayList<Double> temps = new ArrayList<Double>();
 		long startTime;
@@ -133,6 +151,21 @@ public class Main {
 	}
 	
 	
+	public static String csvCompiler(ArrayList<String> args) {
+		String chain = args.get(0);
+		for(String e : args) {
+			chain+=','+e;
+		}
+		return chain;
+	}
+	
+	public static void writd(String str) throws IOException {
+			    BufferedWriter writer = new BufferedWriter(new FileWriter("test.csv"));
+			    writer.write(intitules+"\n");
+			    writer.write(str);
+			    writer.close();
+			}
+	
 	/**
 	 * user-asking interface for adding to CSV file
 	 */
@@ -147,7 +180,14 @@ public class Main {
 		}
 		// save only if user did ask so
 		if(answer) {
-			Output.rec(tableArgs);
+			//Output.rec(tableArgs);
+			//Output.ecriture(sysname,tableArgs.toString());
+			try {
+				writd(csvCompiler(tableArgs));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println("Données enregistrées avec succès !");
 		}
 		else {
