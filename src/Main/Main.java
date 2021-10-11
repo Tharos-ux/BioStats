@@ -8,7 +8,10 @@ import oshi.hardware.PhysicalMemory;
 import oshi.hardware.Sensors;
 import oshi.hardware.VirtualMemory;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,7 +27,7 @@ public class Main {
 	 * length of key used for alignment
 	 */
 	public static int keySize = 22;
-	public static int execs = 1;
+	public static int execs = 3;
 	public static ArrayList<String> tableArgs = new ArrayList<String>();
 	public static Scanner sc = new Scanner(System.in);
 	public static SystemInfo systemInfo = new SystemInfo();
@@ -32,7 +35,7 @@ public class Main {
 	public static ArrayList<String> pathList = new ArrayList<String>();
 	public static String sysname = getComputerName();
 	public static Sensors sensor = hardware.getSensors();
-	public static final String intitules = "000100 pb,000500 pb,001000 pb,005000 pb,010000 pb,050000 pb,100000 pb,Temperature maximale,Delta temperature,Nom processeur,Cadence horloge,Architecture processeur,Fabricant processeur,Microarchitecture,Processeurs physiques,Processeurs logiques,Processeurs JVM,Mémoire JVM,Mémoire totale,Vitesse mémoire,Type mémoire,OS";
+	public static final String intitules = "Exécutions,Taille des clés,000100 pb,000500 pb,001000 pb,005000 pb,010000 pb,050000 pb,100000 pb,Temperature maximale,Delta temperature,Nom processeur,Cadence horloge,Architecture processeur,Fabricant processeur,Microarchitecture,Processeurs physiques,Processeurs logiques,Processeurs JVM,Mémoire JVM,Mémoire totale,Vitesse mémoire,Type mémoire,OS";
 	
 	private static String getComputerName(){
 	    Map<String, String> env = System.getenv();
@@ -152,19 +155,43 @@ public class Main {
 	
 	
 	public static String csvCompiler(ArrayList<String> args) {
-		String chain = args.get(0);
+		String chain=Integer.toString(execs)+','+Integer.toString(keySize);
 		for(String e : args) {
 			chain+=','+e;
 		}
 		return chain;
 	}
 	
-	public static void writd(String str) throws IOException {
-			    BufferedWriter writer = new BufferedWriter(new FileWriter("test.csv"));
+	public static String filename = "data.csv";
+	
+	public static void writd(String str, List<String> data) throws IOException {
+			    BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
 			    writer.write(intitules+"\n");
-			    writer.write(str);
+			    for(String e : data) {
+			    	writer.append(e+"\n");
+			    }
+			    writer.append(str+"\n");
+			    writer.flush();
 			    writer.close();
 			}
+	
+	public static List<String> readr() {
+		BufferedReader reader;
+		ArrayList<String> ls = new ArrayList<String>();
+		try {
+			reader = new BufferedReader(new FileReader(filename));
+			reader.readLine();
+			String row;
+			while ((row = reader.readLine()) != null) {
+				ls.add(row);
+				
+		}
+		} catch (FileNotFoundException e) {} catch (IOException e) {e.printStackTrace();}
+		
+		return ls;
+	}
+	
+	// String[] donnees = row.split(",");
 	
 	/**
 	 * user-asking interface for adding to CSV file
@@ -183,7 +210,7 @@ public class Main {
 			//Output.rec(tableArgs);
 			//Output.ecriture(sysname,tableArgs.toString());
 			try {
-				writd(csvCompiler(tableArgs));
+				writd(csvCompiler(tableArgs),readr());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
