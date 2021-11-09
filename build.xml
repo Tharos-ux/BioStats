@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<project name="BioStats" default="build" basedir=".">
+   
+  <property name="src.dir" location="src" />
+  <property name="build.dir" location="bin" />
+  <property name="install.file" location="/home/user/Desktop/Files4Installer/install.xml" />
+  <property name="image.dir" location="/home/siegfried/Java/BioStats/ressources" />
+ 
+  <target name="clean">
+    <delete dir="${build.dir}" />
+  </target>
+ 
+  <target name="makedir">
+    <mkdir dir="${build.dir}" />
+  </target>
+ 
+  <target name="build" depends="clean, makedir">
+    <javac srcdir="${src.dir}" destdir="${build.dir}"/>
+  </target>
+ 
+</project>

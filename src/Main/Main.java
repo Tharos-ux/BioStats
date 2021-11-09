@@ -27,7 +27,7 @@ public class Main {
 	 * length of key used for alignment
 	 */
 	public static int keySize = 22;
-	public static int execs = 3;
+	public static int execs = 1;
 	public static ArrayList<String> tableArgs = new ArrayList<String>();
 	public static Scanner sc = new Scanner(System.in);
 	public static SystemInfo systemInfo = new SystemInfo();

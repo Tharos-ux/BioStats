@@ -1,0 +1,2 @@
+Exécutions,Taille des clés,000100 pb,000500 pb,001000 pb,005000 pb,010000 pb,050000 pb,100000 pb,Temperature maximale,Delta temperature,Nom processeur,Cadence horloge,Architecture processeur,Fabricant processeur,Microarchitecture,Processeurs physiques,Processeurs logiques,Processeurs JVM,Mémoire JVM,Mémoire totale,Vitesse mémoire,Type mémoire,OS
+1,22,3,108,206,432,746,9061,41888,46.0,1.0,Intel(R) Celeron(R) N4120 CPU @ 1.10GHz,1100,amd64,GenuineIntel,Goldmont Plus,4,4,4,142,3904770048,0,VIRTUAL,Linux
